@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Navigate, Route, } from "react-router-dom";
 import logo from './logo.svg'
 import './App.css'
 import { Routes } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 import Register from './components/Register';
 import Login from './components/Login';
@@ -33,7 +34,7 @@ function App() {
 
         <Route path='/home' element={Home()} />
        
-        <Route path='/' element={<Login />} />
+        <Route path='/' element={<Login signin={signin} />} />
         <Route path='/register' element={<Register signin={signin} />} />
       
 
