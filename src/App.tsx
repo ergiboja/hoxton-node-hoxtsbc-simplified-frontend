@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { BrowserRouter as Router, Route,} from "react-router-dom";
+import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Navigate, Route, } from "react-router-dom";
 import logo from './logo.svg'
 import './App.css'
 import { Routes } from 'react-router-dom'
@@ -8,17 +8,36 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
 
+export type User = {
+  id: number
+  email: string
+  password: string
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState<null | User>(null)
+  function signin(user: User) {
+    setUser(user)
+   
+  }
+  function signout() {
+    setUser(null)
+  }
+  
+
+
 
   return (
     <>
-    <Routes>
-    <Route path='/' element={Login()}/>
+      <Routes>
+
+        <Route path='/home' element={Home()} />
+       
+        <Route path='/' element={<Login />} />
+        <Route path='/register' element={<Register signin={signin} />} />
       
-      <Route path='/register' element={Register()}/>
-     
-      <Route path='/home' element={Home()}/>
+
+
       </Routes>
     </>
   )
