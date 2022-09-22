@@ -17,14 +17,33 @@ export type User = {
 
 function App() {
   const [user, setUser] = useState<null | User>(null)
+  const[logginfo, setLogginfo]=useState(false)
   function signin(user: User) {
     setUser(user)
+    setLogginfo(true)
    
   }
   function signout() {
     setUser(null)
+    setLogginfo(false)
   }
+  console.log(user)
+  console.log(logginfo)
+ 
+  //   const navigate = useNavigate();
+  //   useEffect(() => {
+  //   if(logginfo==true){
+  //     navigate("/home")
+  //   }else{
+  //     navigate("/")
+        
+  //   }
+  // },[])
+
   
+
+
+ 
 
 
 
@@ -32,7 +51,7 @@ function App() {
     <>
       <Routes>
 
-        <Route path='/home' element={Home()} />
+        <Route path='/home' element={<Home   signout={signout}/>} />
        
         <Route path='/' element={<Login signin={signin} />} />
         <Route path='/register' element={<Register signin={signin} />} />
